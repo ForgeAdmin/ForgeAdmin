@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 
 public class CommonProxy {
+
   public void preload(FMLPreInitializationEvent event) {}
 
   public void load(FMLInitializationEvent event) {}

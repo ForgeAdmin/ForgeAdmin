@@ -13,7 +13,7 @@ public interface IDatabase {
    * Called at the end of server shutdown. End connections here?
    */
   void closeDatabase();
-  
+
   HashMap<String, Object> getRequest(GetRequest request);
 
   void setRequest(SetRequest request);
