@@ -44,7 +44,7 @@ plugins {
 }
 
 curseforge {
-    apiKey = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+    apiKey = System.getenv("curse-api-key")
     project {
         id = '244511'
         changelog = System.getenv("TRAVIS_BUILD_NUMBER")
