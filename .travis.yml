@@ -1,0 +1,8 @@
+language: java
+install: TERM=dumb gradle setupCIWorkspace --stacktrace
+script: TERM=dumb gradle build --stacktrace
+branches:
+  only:
+  - master
+before_install:
+  - "export TRAVIS_COMMIT_MSG=\"$(git log --format=%B --no-merges -n 1)\""
