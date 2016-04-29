@@ -5,10 +5,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.*;
 
 @Mod(modid = "fadmincore", name = "fAdmin Core")
 public class FAdmin {
@@ -19,8 +16,17 @@ public class FAdmin {
   @Mod.Metadata
   public static ModMetadata meta;
 
-  @SidedProxy(clientSide = "com.github.fadmin.fadmincore.client.ClientProxy", serverSide = "com.github.fadmin.fadmincore.common.CommonProxy")
+  @SidedProxy(clientSide = "com.github.fadmin.fadmincore.client.ClientProxy",
+      serverSide = "com.github.fadmin.fadmincore.common.CommonProxy")
   public static CommonProxy proxy;
+
+  public static boolean isServer() {
+    return FMLCommonHandler.instance().getEffectiveSide().isServer();
+  }
+
+  public static boolean isClient() {
+    return FMLCommonHandler.instance().getEffectiveSide().isClient();
+  }
 
   @Mod.EventHandler
   public void preload(FMLPreInitializationEvent event) {
@@ -38,15 +44,17 @@ public class FAdmin {
   }
 
   @Mod.EventHandler
+  public void serverStarted(FMLServerAboutToStartEvent event) {
+    proxy.serverAboutToStart(event);
+  }
+
+  @Mod.EventHandler
   public void serverStarted(FMLServerStartedEvent event) {
     proxy.serverStarted(event);
   }
 
-  public static boolean isServer() {
-    return FMLCommonHandler.instance().getEffectiveSide().isServer();
-  }
-
-  public static boolean isClient() {
-    return FMLCommonHandler.instance().getEffectiveSide().isClient();
+  @Mod.EventHandler
+  public void serverStarted(FMLServerStoppedEvent event) {
+    proxy.serverStopped(event);
   }
 }

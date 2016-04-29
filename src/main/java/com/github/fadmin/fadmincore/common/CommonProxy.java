@@ -1,17 +1,34 @@
 package com.github.fadmin.fadmincore.common;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import com.github.fadmin.fadmincore.api.database.Database;
+import com.github.fadmin.fadmincore.common.database.JsonDatabase;
+import net.minecraftforge.fml.common.event.*;
 
 public class CommonProxy {
 
-  public void preload(FMLPreInitializationEvent event) {}
+  public void preload(FMLPreInitializationEvent event) {
+  }
 
-  public void load(FMLInitializationEvent event) {}
+  public void load(FMLInitializationEvent event) {
+  }
 
-  public void postload(FMLPostInitializationEvent event) {}
+  public void postload(FMLPostInitializationEvent event) {
+  }
 
-  public void serverStarted(FMLServerStartedEvent event) {}
+  public void serverAboutToStart(FMLServerAboutToStartEvent event) {
+    if (Database.getDatabase() == null) {
+      try {
+        Database.setDatabase(new JsonDatabase());
+      } catch (Exception ignored) {
+      }
+    }
+    Database.getDatabase().initDatabase(event);
+  }
+
+  public void serverStarted(FMLServerStartedEvent event) {
+  }
+
+  public void serverStopped(FMLServerStoppedEvent event) {
+    Database.getDatabase().closeDatabase(event);
+  }
 }
