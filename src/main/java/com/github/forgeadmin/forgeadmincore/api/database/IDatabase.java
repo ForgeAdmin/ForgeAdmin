@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IDatabase {
 
@@ -20,6 +21,8 @@ public interface IDatabase {
   void closeDatabase(FMLServerStoppedEvent event);
 
   <T> T fromDatabase(String collection, String key, Class<T> classOfT) throws IOException;
+
+  <T> List<T> fromDatabase(String collection, Class<T> classOfT) throws IOException;
 
   void toDatabase(String collection, String key, Object object) throws IOException;
 }

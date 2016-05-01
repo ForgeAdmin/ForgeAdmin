@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonDatabase implements IDatabase {
 
@@ -38,6 +40,23 @@ public class JsonDatabase implements IDatabase {
     FileInputStream inputStream = new FileInputStream(new File(collectionFolder, key.concat(".json")));
     //convert JSON file to object
     return new Gson().fromJson(IOUtils.toString(inputStream), classOfT);
+  }
+
+  @Override
+  public <T> List<T> fromDatabase(String collection, Class<T> classOfT) throws IOException {
+    List<T> results = new ArrayList<>();
+    //set folder to load JSONs for this collection
+    File collectionFolder = new File(storageLocation, collection);
+    if (collectionFolder.listFiles() != null) {
+      //iterate through all files in collection
+      for (File document : collectionFolder.listFiles()) {
+        //set inputstream for this specific JSON file
+        FileInputStream inputStream = new FileInputStream(new File(collectionFolder, document.getName()));
+        //convert JSON file to object and add to results
+        results.add(new Gson().fromJson(IOUtils.toString(inputStream), classOfT));
+      }
+    }
+    return results;
   }
 
   @Override
