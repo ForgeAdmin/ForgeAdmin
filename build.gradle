@@ -12,6 +12,11 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
     }
 }
+
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.0.7'
+}
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "0.1.0." + System.getenv("TRAVIS_BUILD_NUMBER")
@@ -25,6 +30,15 @@ minecraft {
     version = "1.8.9-11.15.1.1722"
     runDir = "run"
     mappings = "stable_20"
+}
+
+curseforge {
+    apiKey = System.getenv("CURSE_API")
+    project {
+        id = '244511'
+        changelog = System.getenv("TRAVIS_COMMIT_MSG")
+        releaseType = 'release'
+    }
 }
 
 dependencies {
