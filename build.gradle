@@ -31,13 +31,30 @@ minecraft {
     mappings = "stable_20"
 }
 
+task deobfJar(type: Jar, dependsOn: 'jar') {
+    from "build/classes/main"
+    classifier "dev"
+}
+
+task sourcesJar(type: Jar, dependsOn: 'sourceMainJava') {
+    from "build/sources/main/java"
+    from "build/resources/main"
+    classifier "sources"
+}
+
+artifacts {
+    archives deobfJar
+    archives sourcesJar
+}
+
 curseforge {
     apiKey = ((System.getenv("CURSE_API") == null) ? '000000' : System.getenv("CURSE_API"))
     project {
         id = '244511'
         changelog = ((System.getenv("TRAVIS_COMMIT_MSG") == null) ? 'No changes' : System.getenv("TRAVIS_COMMIT_MSG"))
         releaseType = 'release'
-        addArtifact sourceJar
+        addArtifact sourcesJar
+        addArtifact deobfJar
     }
 }
 
