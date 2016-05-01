@@ -22,7 +22,6 @@ public class CommandManager {
     replaceCommand(new CommandKill(), new CommandKillOverwrite());
     replaceCommand(new CommandToggleDownfall(), new CommandToggleDownfallOverwrite());
     replaceCommand(new CommandWeather(), new CommandWeatherOverwrite());
-    replaceCommand(new CommandXP(), new CommandXPOverwrite());
     replaceCommand(new CommandGive(), new CommandGiveOverwrite());
     replaceCommand(new CommandReplaceItem(), new CommandReplaceItemOverwrite());
     replaceCommand(new CommandStats(), new CommandStatsOverwrite());
