@@ -1,6 +1,6 @@
 package com.github.forgeadmin.forgeadmincore.common.command.overwrite;
 
-import com.github.forgeadmin.forgeadmincore.api.command.Permissable;
+import com.github.forgeadmin.forgeadmincore.api.permissions.Permissable;
 import net.minecraft.command.CommandBlockData;
 
 public class CommandBlockDataOverwrite extends CommandBlockData implements Permissable {

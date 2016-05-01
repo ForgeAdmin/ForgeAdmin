@@ -1,7 +1,7 @@
 package com.github.forgeadmin.forgeadmincore.common.command.overwrite;
 
-import com.github.forgeadmin.forgeadmincore.api.Permisson;
-import com.github.forgeadmin.forgeadmincore.api.command.Permissable;
+import com.github.forgeadmin.forgeadmincore.api.permissions.Permisson;
+import com.github.forgeadmin.forgeadmincore.api.permissions.Permissable;
 import net.minecraft.command.CommandClone;
 import net.minecraft.command.ICommandSender;
 

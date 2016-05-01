@@ -1,4 +1,4 @@
-package com.github.forgeadmin.forgeadmincore.api.command;
+package com.github.forgeadmin.forgeadmincore.api.permissions;
 
 public interface Permissable {
   String getPermissionNode();
