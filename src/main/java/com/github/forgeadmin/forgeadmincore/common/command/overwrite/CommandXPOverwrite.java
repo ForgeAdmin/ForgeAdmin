@@ -2,11 +2,11 @@ package com.github.forgeadmin.forgeadmincore.common.command.overwrite;
 
 import com.github.forgeadmin.forgeadmincore.api.permissions.PermissonHandler;
 import com.github.forgeadmin.forgeadmincore.api.permissions.Permissible;
-import net.minecraft.command.CommandTime;
+import net.minecraft.command.CommandXP;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class CommandTimeOverwrite extends CommandTime implements Permissible {
+public class CommandXPOverwrite extends CommandXP implements Permissible {
 
   @Override
   public int getRequiredPermissionLevel() {

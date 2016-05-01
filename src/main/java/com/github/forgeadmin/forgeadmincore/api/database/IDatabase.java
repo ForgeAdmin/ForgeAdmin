@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public interface IDatabase {
 
+  String databaseId();
+
   /**
    * Called at the end of PreInit. Init connections here?
    */

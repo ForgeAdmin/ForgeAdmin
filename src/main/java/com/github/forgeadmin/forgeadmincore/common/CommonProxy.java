@@ -1,6 +1,6 @@
 package com.github.forgeadmin.forgeadmincore.common;
 
-import com.github.forgeadmin.forgeadmincore.api.database.Database;
+import com.github.forgeadmin.forgeadmincore.api.database.DatabaseHandler;
 import com.github.forgeadmin.forgeadmincore.common.database.JsonDatabase;
 import net.minecraftforge.fml.common.event.*;
 
@@ -16,19 +16,19 @@ public class CommonProxy {
   }
 
   public void serverAboutToStart(FMLServerAboutToStartEvent event) {
-    if (Database.getDatabase() == null) {
+    if (DatabaseHandler.getDatabase() == null) {
       try {
-        Database.setDatabase(new JsonDatabase());
+        DatabaseHandler.setDatabase(new JsonDatabase());
       } catch (Exception ignored) {
       }
     }
-    Database.getDatabase().initDatabase(event);
+    DatabaseHandler.getDatabase().initDatabase(event);
   }
 
   public void serverStarted(FMLServerStartedEvent event) {
   }
 
   public void serverStopped(FMLServerStoppedEvent event) {
-    Database.getDatabase().closeDatabase(event);
+    DatabaseHandler.getDatabase().closeDatabase(event);
   }
 }

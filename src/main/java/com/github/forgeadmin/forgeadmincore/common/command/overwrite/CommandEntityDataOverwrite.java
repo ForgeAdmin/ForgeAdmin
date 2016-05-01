@@ -1,11 +1,12 @@
 package com.github.forgeadmin.forgeadmincore.common.command.overwrite;
 
-import com.github.forgeadmin.forgeadmincore.api.permissions.Permisson;
-import com.github.forgeadmin.forgeadmincore.api.permissions.Permissable;
+import com.github.forgeadmin.forgeadmincore.api.permissions.PermissonHandler;
+import com.github.forgeadmin.forgeadmincore.api.permissions.Permissible;
 import net.minecraft.command.CommandEntityData;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class CommandEntityDataOverwrite extends CommandEntityData implements Permissable {
+public class CommandEntityDataOverwrite extends CommandEntityData implements Permissible {
 
   @Override
   public int getRequiredPermissionLevel() {
@@ -19,6 +20,6 @@ public class CommandEntityDataOverwrite extends CommandEntityData implements Per
 
   @Override
   public boolean canCommandSenderUseCommand(ICommandSender sender) {
-    return Permisson.canCommandSenderUseCommand(sender, this);
+    return !(sender instanceof EntityPlayer) || PermissonHandler.getPermissionHandler().hasPermission ((EntityPlayer) sender, this);
   }
 }

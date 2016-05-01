@@ -1,11 +1,12 @@
 package com.github.forgeadmin.forgeadmincore.common.command.overwrite;
 
-import com.github.forgeadmin.forgeadmincore.api.permissions.Permisson;
-import com.github.forgeadmin.forgeadmincore.api.permissions.Permissable;
+import com.github.forgeadmin.forgeadmincore.api.permissions.PermissonHandler;
+import com.github.forgeadmin.forgeadmincore.api.permissions.Permissible;
 import net.minecraft.command.CommandWorldBorder;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class CommandWorldBorderOverwrite extends CommandWorldBorder implements Permissable {
+public class CommandWorldBorderOverwrite extends CommandWorldBorder implements Permissible {
 
   @Override
   public int getRequiredPermissionLevel() {
@@ -19,6 +20,6 @@ public class CommandWorldBorderOverwrite extends CommandWorldBorder implements P
 
   @Override
   public boolean canCommandSenderUseCommand(ICommandSender sender) {
-    return Permisson.canCommandSenderUseCommand(sender, this);
+    return !(sender instanceof EntityPlayer) || PermissonHandler.getPermissionHandler().hasPermission ((EntityPlayer) sender, this);
   }
 }

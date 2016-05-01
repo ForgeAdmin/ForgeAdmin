@@ -1,9 +1,9 @@
 package com.github.forgeadmin.forgeadmincore.common.command.overwrite;
 
-import com.github.forgeadmin.forgeadmincore.api.permissions.Permissable;
+import com.github.forgeadmin.forgeadmincore.api.permissions.Permissible;
 import net.minecraft.command.CommandBlockData;
 
-public class CommandBlockDataOverwrite extends CommandBlockData implements Permissable {
+public class CommandBlockDataOverwrite extends CommandBlockData implements Permissible {
 
   @Override
   public int getRequiredPermissionLevel() {

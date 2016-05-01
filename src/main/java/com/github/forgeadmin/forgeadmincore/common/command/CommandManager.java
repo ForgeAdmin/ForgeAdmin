@@ -20,7 +20,7 @@ public class CommandManager {
     replaceCommand(new CommandDifficulty(), new CommandDifficultyOverwrite());
     replaceCommand(new CommandDefaultGameMode(), new CommandDefaultGameModeOverwrite());
     replaceCommand(new CommandKill(), new CommandKillOverwrite());
-    replaceCommand(new CommandToggleDownfall(), new CommandToggleDownfallOverwrite());
+    replaceCommand(new CommandToggleDownfall(), new CommandXPOverwrite());
     replaceCommand(new CommandWeather(), new CommandWeatherOverwrite());
     replaceCommand(new CommandGive(), new CommandGiveOverwrite());
     replaceCommand(new CommandReplaceItem(), new CommandReplaceItemOverwrite());
@@ -44,7 +44,8 @@ public class CommandManager {
     replaceCommand(new CommandBlockData(), new CommandBlockDataOverwrite());
     replaceCommand(new CommandWorldBorder(), new CommandWorldBorderOverwrite());
     replaceCommand(new CommandTitle(), new CommandTitleOverwrite());
-    replaceCommand(new CommandEntityData(), new CommandEntityDataOverwrite());
+    replaceCommand(new CommandToggleDownfall(), new CommandToggleDownfallOverwrite());
+    replaceCommand(new CommandXP(), new CommandXPOverwrite());
   }
 
   private static void replaceCommand(Class<CommandMessage> clazz, ICommand newCommand) {

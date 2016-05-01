@@ -15,6 +15,11 @@ public class JsonDatabase implements IDatabase {
   private File storageLocation;
 
   @Override
+  public String databaseId() {
+    return "json-database";
+  }
+
+  @Override
   public void initDatabase(FMLServerAboutToStartEvent event) {
     gson = new GsonBuilder().setPrettyPrinting().create();
     storageLocation = new File(event.getServer().getDataDirectory(), "fAdmin/database");
@@ -38,7 +43,7 @@ public class JsonDatabase implements IDatabase {
   @Override
   public void toDatabase(String collection, String key, Object object) throws IOException {
     //convert object to json string with pretty printing
-    String objectJson = new GsonBuilder().setPrettyPrinting().create().toJson(object);
+    String objectJson = gson.toJson(object);
     //set folder to save JSONs for this collection
     File collectionFolder = new File(storageLocation, collection);
     Writer writer = null;
