@@ -1,8 +1,8 @@
 language: java
 install:
-  - gradle -info
-  - TERM=dumb gradle setupCIWorkspace --stacktrace
-script: TERM=dumb gradle build --stacktrace
+  - gradlew -info
+  - TERM=dumb gradlew setupCIWorkspace --stacktrace
+script: TERM=dumb gradlew build --stacktrace
 branches:
   only:
   - master
