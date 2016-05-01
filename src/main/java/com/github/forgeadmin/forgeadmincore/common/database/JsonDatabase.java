@@ -68,6 +68,7 @@ public class JsonDatabase implements IDatabase {
     //set file to save JSON for this document
     File document = new File(collectionFolder, key.concat(".json"));
     //write JSON and close writer
+    document.createNewFile();
     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(document), "utf-8"));
     writer.write(objectJson);
     writer.close();

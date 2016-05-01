@@ -33,6 +33,7 @@ minecraft {
 
 task deobfJar(type: Jar, dependsOn: 'jar') {
     from "build/classes/main"
+    from "build/resources/main"
     classifier "dev"
 }
 
