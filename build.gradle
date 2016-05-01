@@ -19,9 +19,9 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "0.1.0." + (System.getenv("TRAVIS_BUILD_NUMBER") == null) ? '0' : System.getenv("TRAVIS_BUILD_NUMBER")
-group= "io.github.fadmin" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "fadmin-core"
+version = "0.1.0." + ((System.getenv("TRAVIS_BUILD_NUMBER") == null) ? '0' : System.getenv("TRAVIS_BUILD_NUMBER"))
+group= "io.github.forgeadmin" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "forgeadmin-core"
 targetCompatibility = '1.8'
 sourceCompatibility = '1.8'
 
@@ -33,10 +33,10 @@ minecraft {
 }
 
 curseforge {
-    apiKey = (System.getenv("CURSE_API") == null) ? '000000' : System.getenv("CURSE_API")
+    apiKey = ((System.getenv("CURSE_API") == null) ? '000000' : System.getenv("CURSE_API"))
     project {
         id = '244511'
-        changelog = (System.getenv("TRAVIS_COMMIT_MSG") == null) ? 'No changes' : System.getenv("TRAVIS_COMMIT_MSG")
+        changelog = ((System.getenv("TRAVIS_COMMIT_MSG") == null) ? 'No changes' : System.getenv("TRAVIS_COMMIT_MSG"))
         releaseType = 'release'
         addArtifact sourceJar
     }
