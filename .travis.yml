@@ -1,14 +1,16 @@
 language: java
 jdk: oraclejdk8
-install:
-  - ./gradlew -info
-  - ./gradlew setupCIWorkspace --stacktrace
-script: ./gradlew build --stacktrace
 branches:
   only:
   - master
 before_install:
   - export TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
+install:
+  - ./gradlew setupCIWorkspace --stacktrace
+script:
+  - ./gradlew build --stacktrace
+after_success:
+  - ./gradlew curseforge --stacktrace
 env:
   global:
     secure: ewNObJVJKC+FvEWkmICe/LQt1MZ+Eh1hGIcVRGItCtHP05bNtM/bmQqLAprWYIuLa9luosRB1EPPNQi55gP1IGu4vCFXRA3WiLVeO7RNjMprprsbnxxaWgi28Is2cNGutLLXFHR40nhdIFm+g3MQf2M75g77sOmMFPrznU/sGXYygjKF2x5J7ocPVP18P5e3A1czxSYGo+MPLA3Rr+E649Rc8Vgifj5KNsrXFzI8kWC2bd8ACiRIAssdbuO457aoyvxLZsN2Fg794K40iT43oWLWpY9VLTTxdikypGRmGeLXTx61yNl3PgIdz8Z3XvrUWiM5DrYZ7KXSyxMbLZZees3VElqwXCdSXMw8WvC8gEeUxOsxvSOGRChwPpC66+riQgW84brUHn9PWIy4tTfg83bHVcL5lXvZGVXaZt+afU7rxYdFMSnFnrxVGj3DsZKGDRtjnEoXvkjeslJz+51GG+yqntIikGF8thug8kz7NEFhEVRJ22P6NKH5jF7AG5ZE51aJNrs6KcIry71Yug2H1ZEfeJtAPEjar4/VjH+bd5nHc0+wt+4oiZUda5botNOxhp6xm/+GrMI48l1//CsjsEifP30a1GMhP3y1NWjdDd25q3+BuVktUKscaiOQwJqLfhkDrWOZU2+Wj1nDOzj6kwSQU7VIoTRwpnGJULWQ8oA=
