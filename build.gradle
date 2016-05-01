@@ -38,6 +38,7 @@ curseforge {
         id = '244511'
         changelog = (System.getenv("TRAVIS_COMMIT_MSG") == null) ? 'No changes' : System.getenv("TRAVIS_COMMIT_MSG")
         releaseType = 'release'
+        addArtifact sourceJar
     }
 }
 
