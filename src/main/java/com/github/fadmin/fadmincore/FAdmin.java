@@ -7,10 +7,14 @@ import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 
-@Mod(modid = "fadmincore", name = "fAdmin Core")
+@Mod(modid = "forgeadmincore",
+    name = "ForgeAdmin Core",
+    useMetadata = true,
+    acceptedMinecraftVersions = "1.8.9",
+    canBeDeactivated = true)
 public class FAdmin {
 
-  @Mod.Instance("fadmincore")
+  @Mod.Instance("forgeadmincore")
   public static FAdmin INSTANCE;
 
   @Mod.Metadata

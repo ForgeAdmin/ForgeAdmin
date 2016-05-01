@@ -1,11 +1,11 @@
 [
 {
-  "modid": "fadmincore",
-  "name": "fAdmin Core",
-  "description": "",
+  "modid": "forgeadmincore",
+  "name": "ForgeAdmin Core",
+  "description": "This is the main mod for the ForgeAdmin set of server administration mods. This mod includes numerous required API's for its sub mods.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://forgeadmin.github.io/fadmin-core",
+  "url": "http://minecraft.curseforge.com/projects/forgeadmin-core",
   "updateUrl": "",
   "authorList": ["HoBoS-TaCo"],
   "credits": "",
