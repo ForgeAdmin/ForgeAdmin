@@ -21,7 +21,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "0.1.0." + ((System.getenv("TRAVIS_BUILD_NUMBER") == null) ? '0' : System.getenv("TRAVIS_BUILD_NUMBER"))
 group= "io.github.forgeadmin" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "forgeadmin-core"
+archivesBaseName = "forgeadmin"
 targetCompatibility = '1.8'
 sourceCompatibility = '1.8'
 
