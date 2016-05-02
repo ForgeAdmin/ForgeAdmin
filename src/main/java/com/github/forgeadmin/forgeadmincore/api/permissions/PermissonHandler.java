@@ -1,30 +1,28 @@
 package com.github.forgeadmin.forgeadmincore.api.permissions;
 
-import com.github.forgeadmin.forgeadmincore.common.FALog;
-import com.github.forgeadmin.forgeadmincore.common.permissions.DefaultPermission;
+import com.github.forgeadmin.forgeadmincore.common.Config;
+
+import java.util.HashMap;
 
 public class PermissonHandler {
 
-  private static IPermission permissionHandler = new DefaultPermission();
+  private static HashMap<String, IPermission> permissionHandlers = new HashMap<>();
 
   public static IPermission getPermissionHandler() {
-    return permissionHandler;
+    return permissionHandlers.get(Config.permissionHandler);
+  }
+
+  public static IPermission getPermissionHandler(String handlerId) {
+    return permissionHandlers.get(handlerId);
   }
 
   /**
-   * Used by ForgeAdmin permission extensions to set the permission handler
+   * Used by ForgeAdmin permission extensions to add a permission handler
    * during preInitialization.
    *
-   * @param handler {@link IPermission} IPermission to be used for permissions
-   * @throws Exception
+   * @param handler {@link IPermission} IPermission to be added for permissions
    */
-  public static void setPermissonHandler(IPermission handler) throws Exception {
-    if (handler != null && !handler.handlerId().equals("forgeadmin-default") ) {
-      FALog.getLogger().error("Tried to set permission handler to " + handler.handlerId() +
-          " while handler was already set to " + handler.handlerId());
-      throw new Exception();
-    } else {
-      permissionHandler = handler;
-    }
+  public static void addPermissonHandler(IPermission handler) {
+    permissionHandlers.put(handler.handlerId(), handler);
   }
 }

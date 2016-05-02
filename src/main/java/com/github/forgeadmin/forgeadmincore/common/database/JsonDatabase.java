@@ -23,7 +23,7 @@ public class JsonDatabase implements IDatabase {
   @Override
   public void initDatabase(FMLServerAboutToStartEvent event) {
     gson = new GsonBuilder().setPrettyPrinting().create();
-    storageLocation = new File(event.getServer().getDataDirectory(), "fAdmin/database");
+    storageLocation = new File(event.getServer().getDataDirectory(), "forgeadmin/database");
   }
 
   @Override
@@ -68,7 +68,7 @@ public class JsonDatabase implements IDatabase {
     //set file to save JSON for this document
     File document = new File(collectionFolder, key.concat(".json"));
     //write JSON and close writer
-    document.createNewFile();
+    collectionFolder.mkdirs();
     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(document), "utf-8"));
     writer.write(objectJson);
     writer.close();

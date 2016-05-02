@@ -1,29 +1,29 @@
 package com.github.forgeadmin.forgeadmincore.api.database;
 
-import com.github.forgeadmin.forgeadmincore.common.FALog;
+import com.github.forgeadmin.forgeadmincore.common.Config;
+
+import java.util.HashMap;
 
 public class DatabaseHandler {
 
-  private static IDatabase database = null;
+  private static HashMap<String, IDatabase> databases = new HashMap<>();
 
   public static IDatabase getDatabase() {
-    return database;
+    return databases.get(Config.databaseHandler);
   }
 
+  public static IDatabase getDatabase(String databaseId) {
+    return databases.get(databaseId);
+  }
+
+
   /**
-   * Used by ForgeAdmin database extensions to set the database
+   * Used by ForgeAdmin database extensions to add a database
    * during preInitialization.
    *
    * @param db {@link IDatabase} to be used for storage
-   * @throws Exception
    */
-  public static void setDatabase(IDatabase db) throws Exception {
-    if (database != null) {
-      FALog.getLogger().error("Tried to set database to " + db.toString() +
-          " while database was already set to " + database.toString());
-      throw new Exception();
-    } else {
-      database = db;
-    }
+  public static void addDatabase(IDatabase db) {
+    databases.put(db.databaseId(), db);
   }
 }
