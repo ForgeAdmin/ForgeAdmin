@@ -3,6 +3,9 @@ package com.github.forgeadmin.forgeadmin.common;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import org.apache.commons.io.IOUtils;
 
@@ -36,9 +39,9 @@ public class Config {
 
   private static HashMap<String, ConfigItem> configItems;
 
-  public static void init(FMLServerAboutToStartEvent event) {
+  public static void init(FMLPreInitializationEvent event) {
 
-    File configLocation = new File(event.getServer().getDataDirectory(), "forgeadmin/config.json");
+    File configLocation = new File(event.getModConfigurationDirectory(), "forgeadmin/config.json");
 
     FileInputStream inputStream = null;
     try {
@@ -58,7 +61,7 @@ public class Config {
     databaseHandler = getString("database-handler", "json-database");
   }
 
-  private static void createNewConfig(FMLServerAboutToStartEvent event) {
+  private static void createNewConfig(FMLPreInitializationEvent event) {
     configItems = new HashMap<>();
 
     configItems.put("permission-handler", new ConfigItem("ID of the permission handler", "forgeadmin-default"));
@@ -67,7 +70,7 @@ public class Config {
     String config = new GsonBuilder().setPrettyPrinting().create().toJson(configItems);
 
     Writer writer = null;
-    File configLocation = new File(event.getServer().getDataDirectory(), "forgeadmin");
+    File configLocation = new File(event.getModConfigurationDirectory(), "forgeadmin");
     try {
       configLocation.mkdirs();
       writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(configLocation, "config.json")), "utf-8"));

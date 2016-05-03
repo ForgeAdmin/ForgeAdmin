@@ -3,7 +3,7 @@ package com.github.forgeadmin.forgeadmin.common.database;
 import com.github.forgeadmin.forgeadmin.api.database.IDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import org.apache.commons.io.IOUtils;
 
@@ -21,9 +21,9 @@ public class JsonDatabase implements IDatabase {
   }
 
   @Override
-  public void initDatabase(FMLServerAboutToStartEvent event) {
+  public void initDatabase(FMLPreInitializationEvent event) {
     gson = new GsonBuilder().setPrettyPrinting().create();
-    storageLocation = new File(event.getServer().getDataDirectory(), "forgeadmin/database");
+    storageLocation = new File(event.getModConfigurationDirectory(), "forgeadmin/database");
   }
 
   @Override

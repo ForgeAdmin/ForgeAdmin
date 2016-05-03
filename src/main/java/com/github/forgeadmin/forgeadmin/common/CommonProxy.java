@@ -9,6 +9,10 @@ import net.minecraftforge.fml.common.event.*;
 public class CommonProxy {
 
   public void preload(FMLPreInitializationEvent event) {
+    Config.init(event);
+    DatabaseHandler.addDatabase(new JsonDatabase());
+    DatabaseHandler.getDatabase().initDatabase(event);
+    PermissonHandler.addPermissonHandler(new DefaultPermission());
   }
 
   public void load(FMLInitializationEvent event) {
@@ -18,10 +22,6 @@ public class CommonProxy {
   }
 
   public void serverAboutToStart(FMLServerAboutToStartEvent event) {
-    Config.init(event);
-    DatabaseHandler.addDatabase(new JsonDatabase());
-    DatabaseHandler.getDatabase().initDatabase(event);
-    PermissonHandler.addPermissonHandler(new DefaultPermission());
   }
 
   public void serverStarted(FMLServerStartedEvent event) {
