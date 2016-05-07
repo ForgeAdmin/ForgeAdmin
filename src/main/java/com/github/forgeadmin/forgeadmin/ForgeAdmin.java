@@ -20,7 +20,7 @@ public class ForgeAdmin {
   @Mod.Metadata
   public static ModMetadata meta;
 
-  @SidedProxy(clientSide = "com.github.forgeadmin.forgeadmin.common.ClientProxy",
+  @SidedProxy(clientSide = "com.github.forgeadmin.forgeadmin.client.ClientProxy",
       serverSide = "com.github.forgeadmin.forgeadmin.common.CommonProxy")
   public static CommonProxy proxy;
 
